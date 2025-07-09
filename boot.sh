@@ -1,28 +1,16 @@
-ascii_art=' ▄██████▄    ▄▄▄▄███▄▄▄▄      ▄████████    ▄████████  ▄████████    ▄█    █▄    ▄██   ▄  
-███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███   ███    ███ ███    ███   ███    ███   ███   ██▄
-███    ███ ███   ███   ███   ███    ███   ███    ███ ███    █▀    ███    ███   ███▄▄▄███
-███    ███ ███   ███   ███   ███    ███  ▄███▄▄▄▄██▀ ███         ▄███▄▄▄▄███▄▄ ▀▀▀▀▀▀███
-███    ███ ███   ███   ███ ▀███████████ ▀▀███▀▀▀▀▀   ███        ▀▀███▀▀▀▀███▀  ▄██   ███
-███    ███ ███   ███   ███   ███    ███ ▀███████████ ███    █▄    ███    ███   ███   ███
-███    ███ ███   ███   ███   ███    ███   ███    ███ ███    ███   ███    ███   ███   ███
- ▀██████▀   ▀█   ███   █▀    ███    █▀    ███    ███ ████████▀    ███    █▀     ▀█████▀ 
-                                          ███    ███                                    '
-
-echo -e "\n$ascii_art\n"
-
 pacman -Q git &>/dev/null || sudo pacman -Sy --noconfirm --needed git
 
-echo -e "\nCloning Omarchy..."
-rm -rf ~/.local/share/omarchy/
-git clone https://github.com/basecamp/omarchy.git ~/.local/share/omarchy >/dev/null
+echo -e "\nCloning dotfiles2..."
+rm -rf ~/.local/share/dotfiles2/
+git clone https://github.com/jacobmeredith/dotfiles2.git ~/.local/share/dotfiles2 >/dev/null
 
 # Use custom branch if instructed
-if [[ -n "$OMARCHY_REF" ]]; then
-  echo -e "\eUsing branch: $OMARCHY_REF"
-  cd ~/.local/share/omarchy
-  git fetch origin "${OMARCHY_REF}" && git checkout "${OMARCHY_REF}"
+if [[ -n "$DOTFILES2_REF" ]]; then
+  echo -e "\eUsing branch: $DOTFILES2_REF"
+  cd ~/.local/share/dotfiles2
+  git fetch origin "${DOTFILES2_REF}" && git checkout "${DOTFILES2_REF}"
   cd -
 fi
 
 echo -e "\nInstallation starting..."
-source ~/.local/share/omarchy/install.sh
+source ~/.local/share/dotfiles2/install.sh
